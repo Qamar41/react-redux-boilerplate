@@ -1,25 +1,33 @@
+import React from 'react'
 import logo from './logo.svg';
 import './App.css';
+import Expense from './components/expense'
+import { connect } from 'react-redux'
+import Home from './components/home'
+import {set_data} from './store/actions'
 
-function App() {
+class App extends React.Component {
+
+  render()
+  {
+    console.log(this.props)
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      
+      <Home  />
     </div>
   );
 }
+}
+ 
+const mapStateToProps = (state)=>({
+  users:state.users
+})
 
-export default App;
+const mapDispatchtoProps =(dispatch)=>({
+set_data : (data)=>dispatch(set_data(data))
+}) 
+
+
+export default connect(mapStateToProps,mapDispatchtoProps)(App);
